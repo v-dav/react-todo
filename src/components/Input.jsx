@@ -16,23 +16,30 @@ const Input = ({ onAddTask }) => {
 		}
 	}
 
-	return (
-		<form onSubmit={(e) => e.preventDefault()}>
-			<input
-				type="text"
-				id="text"
-				placeholder="Add a to-do task..."
-				onChange={(event) => setTaskText(event.target.value)}
-				value={taskText}
-			/>
-			<button
-				type="button"
-				className="add"
-				onClick={handleAddTask}
-			>Add</button>
-			<p style={{ color: "red" }}>{ alert }</p>
-		</form>
-	)
-}
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			handleAddTask();
+		}
+	}
+
+		return (
+			<form onSubmit={(e) => e.preventDefault()}>
+				<input
+					type="text"
+					id="text"
+					placeholder="Add a to-do task..."
+					onChange={(event) => setTaskText(event.target.value)}
+					value={taskText}
+					onKeyDown={handleKeyDown}
+				/>
+				<button
+					type="button"
+					className="add"
+					onClick={handleAddTask}
+				>Add</button>
+				<p style={{ color: "red" }}>{alert}</p>
+			</form>
+		)
+	}
 
 export default Input;
