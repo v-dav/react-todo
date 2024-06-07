@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './styles/index.css'
 import Input from './components/Input'
 import List from './components/List'
@@ -8,14 +8,24 @@ import GitHub from './assets/github.png'
 function App() {
 	const [tasks, setTasks] = useState([]);
 
+	// Gets list of tasks on App load
+	useEffect(() => {
+		const storedTasks = localStorage.getItem('tasks');
+		if (storedTasks) {
+			setTasks(JSON.parse(storedTasks));
+		}
+	}, [])
+
 	const AddTask = (task) => {
 		const newTasks = [...tasks, task];
 		setTasks(newTasks);
+		localStorage.setItem('tasks', JSON.stringify(newTasks));
 	}
 
 	const removeTask = (taskToRemove) => {
 		const updatedTasks = tasks.filter(task => task != taskToRemove);
 		setTasks(updatedTasks);
+		localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 	}
 
 	return (
