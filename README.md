@@ -16,6 +16,7 @@ This project repository contains a simple yet powerful React To-Do List applicat
 
 - **Add Tasks:** Users can add new tasks to the list by entering text into an input field.
 - **Delete Tasks:** Remove tasks from the list with a delete button.
+- **Persistence between sessions:** thanks to localStorage.
 
 ## Technologies Used
 
